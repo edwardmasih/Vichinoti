@@ -17,7 +17,7 @@ List main_menu_items = [
 
   MainMenuItems(
       title: 'Blog',
-      isSelected: true
+      isSelected: false
   ),
 
   MainMenuItems(
