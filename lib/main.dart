@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'homepage.dart';
+import 'pages/home_page.dart';
 
 void main() => runApp(Vichinoti());
 
 class Vichinoti extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Vichinoti",
-      theme: new ThemeData(primarySwatch: Colors.lightBlue),
-      home: LoginRegisterPage(),
-      //home: homepage(),
+      title: "Vichinoti & Co.",
+      theme: new ThemeData(
+        fontFamily: 'JosefinSans',
+        canvasColor: Colors.white,
+      ),
+      home: HomePage(),
     );
   }
 }
