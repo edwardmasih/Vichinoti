@@ -74,6 +74,7 @@ class _HomePageState extends State<HomePage> {
                           color: main_menu_items[index].isSelected
                               ? Colors.lightBlueAccent
                               : Color(0xffDDE7F9),
+
                         ),
                       ),
                     );
