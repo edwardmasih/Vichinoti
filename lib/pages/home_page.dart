@@ -4,6 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:vichinoti/model/text_syles.dart';
 import 'package:vichinoti/model/main_menu_items.dart';
 import 'package:vichinoti/model/places.dart';
+import 'package:vichinoti/widgets/carousel_widget.dart';
+
+class SliderClass {
+  final String name;
+  final String imagePath;
+  final Color shadowColor;
+
+  SliderClass({this.name, this.imagePath, this.shadowColor});
+}
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,9 +20,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<SliderClass> carouselSliderList = List<SliderClass>();
+
   @override
   void initState() {
     super.initState();
+    for (int i = 0; i < places.length; i++) {
+      carouselSliderList.add(places[i]);
+    }
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -32,6 +46,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.brown[100],
           child: Column(
             children: <Widget>[
+              //MAIN APP BAR WITH THE LOGO
               Center(
                 child: Container(
                   padding: EdgeInsets.only(
@@ -56,8 +71,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+
+              //LIST VIEW SLIDER WITH PAGE OPTIONS
               Padding(
-                padding: const EdgeInsets.only(bottom: 5),
+                padding: const EdgeInsets.only(bottom: 15),
                 child: Container(
                   width: width,
                   height: height * 0.06,
@@ -67,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: main_menu_items.length,
+                    itemCount: mainMenuItem.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.only(
@@ -77,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: main_menu_items[index].isSelected
+                            color: mainMenuItem[index].isSelected
                                 ? Color(0xff0245FC)
                                 : Color(0xffDDE7F9),
                           ),
@@ -87,12 +104,13 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 20,
                             ),
                             child: Text(
-                              main_menu_items[index].title,
+                              mainMenuItem[index].title,
                               style: TextStyle(
                                 letterSpacing: 1.1,
                                 fontSize: 18,
                                 fontFamily: 'JosefinSans',
-                                color: main_menu_items[index].isSelected
+                                fontWeight: FontWeight.w500,
+                                color: mainMenuItem[index].isSelected
                                     ? Colors.white
                                     : Colors.black,
                               ),
@@ -105,21 +123,31 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Expanded(
-                  child: Container(
-                    width: width,
-                    child: CarouselSlider(
-                      enableInfiniteScroll: true,
-                        scrollDirection: Axis.horizontal,
-                        autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 2),
-                        pauseAutoPlayOnTouch: Duration(seconds: 5),
-                        enlargeCenterPage: true,
-                        viewportFraction: 0.9,
-                        initialPage: 0,
-                        height: height * 0.4,
-//                        items:places.map(f)
-                    ),
+                child: Container(
+                  width: width,
+                  child: CarouselSlider(
+                    enableInfiniteScroll: true,
+                    scrollDirection: Axis.horizontal,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 2),
+                    pauseAutoPlayOnTouch: Duration(seconds: 5),
+                    enlargeCenterPage: true,
+                    viewportFraction: 0.9,
+                    initialPage: 0,
+                    height: height * 0.4,
+                    items: carouselSliderList.map((f) {
+                      return Builder(builder: (context) {
+                        return InkWell(
+                          onTap: () {},
+                          child: Hero(
+                            tag: f.imagePath,
+                            child: CarouselWidget(),
+                          ),
+                        );
+                      });
+                    }).toList(),
                   ),
+                ),
               ),
             ],
           ),
