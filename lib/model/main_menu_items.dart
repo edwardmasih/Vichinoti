@@ -8,7 +8,7 @@ class MainMenuItems {
   MainMenuItems({this.title,this.isSelected});
 }
 
-List main_menu_items = [
+List mainMenuItem = [
 
   MainMenuItems(
     title: 'Home',
