@@ -7,11 +7,11 @@ import 'package:vichinoti/model/places.dart';
 import 'package:vichinoti/widgets/carousel_widget.dart';
 
 class SliderClass {
-  final String name;
-  final String imagePath;
+  final String sliderTitle;
+  final String sliderImagePath;
   final Color shadowColor;
 
-  SliderClass({this.name, this.imagePath, this.shadowColor});
+  SliderClass(this.sliderTitle, this.sliderImagePath, this.shadowColor);
 }
 
 class HomePage extends StatefulWidget {
@@ -26,8 +26,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     for (int i = 0; i < places.length; i++) {
-      carouselSliderList.add(places[i]);
+      carouselSliderList.add(SliderClass(places[i].placeName.toString(),
+          places[i].imagePath, places[i].shadowColors));
     }
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -43,7 +45,6 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           width: width,
           height: height,
-          color: Colors.brown[100],
           child: Column(
             children: <Widget>[
               //MAIN APP BAR WITH THE LOGO
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Text(
                         "Vichinoti & Co.",
-                        style: AppTheme().main_heading,
+                        style: AppTheme().mainHeading,
                       ),
                       CircleAvatar(
                         radius: 25,
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
 
               //LIST VIEW SLIDER WITH PAGE OPTIONS
               Padding(
-                padding: const EdgeInsets.only(bottom: 15),
+                padding: const EdgeInsets.only(bottom: 0),
                 child: Container(
                   width: width,
                   height: height * 0.06,
@@ -88,7 +89,6 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.only(
-                          left: 5,
                           right: 10,
                         ),
                         child: Container(
@@ -99,10 +99,7 @@ class _HomePageState extends State<HomePage> {
                                 : Color(0xffDDE7F9),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 15,
-                              horizontal: 20,
-                            ),
+                            padding: EdgeInsets.all(15),
                             child: Text(
                               mainMenuItem[index].title,
                               style: TextStyle(
@@ -128,25 +125,38 @@ class _HomePageState extends State<HomePage> {
                   child: CarouselSlider(
                     enableInfiniteScroll: true,
                     scrollDirection: Axis.horizontal,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlayInterval: Duration(seconds: 2),
                     pauseAutoPlayOnTouch: Duration(seconds: 5),
                     enlargeCenterPage: true,
                     viewportFraction: 0.9,
                     initialPage: 0,
-                    height: height * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.73,
                     items: carouselSliderList.map((f) {
                       return Builder(builder: (context) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            print("Tapped");
+                          },
                           child: Hero(
-                            tag: f.imagePath,
-                            child: CarouselWidget(),
+                            tag: f.sliderImagePath,
+                            child: CarouselWidget(
+                              f.sliderTitle,
+                              f.sliderImagePath,
+                              f.shadowColor,
+                            ),
                           ),
                         );
                       });
                     }).toList(),
                   ),
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 10,
                 ),
               ),
             ],
