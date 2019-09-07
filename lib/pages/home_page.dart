@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                     pauseAutoPlayOnTouch: Duration(seconds: 5),
                     enlargeCenterPage: true,
                     viewportFraction: 0.9,
-                    initialPage: 0,
+                    initialPage: 4,
                     height: MediaQuery.of(context).size.height * 0.73,
                     items: carouselSliderList.map((f) {
                       return Builder(builder: (context) {
