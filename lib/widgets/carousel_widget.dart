@@ -21,12 +21,12 @@ class CarouselWidget extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width * 0.80,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
                   color: shadowColor.withOpacity(0.8),
                   blurRadius: 10,
-                  offset: Offset(0, 8)),
+                  offset: Offset(0, 11)),
             ],
           ),
         ),
@@ -68,10 +68,30 @@ class CarouselWidget extends StatelessWidget {
                   initialRating: 0,
                   size: 25,
                   color: Colors.white,
-                  onRated: (int value) {
-                  },
+                  onRated: (int value) {},
                 ),
               ],
+            ),
+          ),
+        ),
+        Positioned(
+          right: 5,
+          top: 5,
+          child: Container(
+            width: 90,
+            height: 60,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.black54.withOpacity(0.5),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
+              ),
+            ),
+            child: Icon(
+              Icons.all_inclusive,
+              color: Colors.white,
+              size: 30,
             ),
           ),
         ),
