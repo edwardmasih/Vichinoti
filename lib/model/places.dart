@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
 
 class Places {
-  final String name;
+  final String placeName;
   final String imagePath;
   final Color shadowColors;
   final String placeDescription;
 
-  Places({this.name, this.imagePath, this.shadowColors, this.placeDescription});
+  Places({this.placeName, this.imagePath, this.shadowColors, this.placeDescription});
 }
 
 List places = [
   Places(
-    name: "Mountains",
-    imagePath: "assets/images/pic(3).jpg",
-    placeDescription: "Something about Mountains",
-    shadowColors: Colors.brown,
+    placeName: 'Mountains',
+    imagePath: 'assets/images/pic(3).jpg',
+    placeDescription: 'Something about Mountains',
+    shadowColors: Color(0xffA37943),
   ),
   Places(
-    name: "Beaches",
-    imagePath: "assets/images/pic(2).jpg",
-    placeDescription: "Something about Beaches",
-    shadowColors: Colors.brown,
+    placeName: 'Beaches',
+    imagePath: 'assets/images/pic(2).jpg',
+    placeDescription: 'Something about Beaches',
+    shadowColors: Color(0xffcfa380),
   ),
   Places(
-    name: "Forest",
-    imagePath: "assets/images/pic(4).jpg",
-    placeDescription: "Something about Forests",
-    shadowColors: Colors.brown,
+    placeName: 'Forest',
+    imagePath: 'assets/images/pic(4).jpg',
+    placeDescription: 'Something about Forests',
+    shadowColors: Color(0xff1FA188),
   ),
   Places(
-    name: "Desert",
-    imagePath: "assets/images/pic(1).jpg",
-    placeDescription: "Something about Deserts",
-    shadowColors: Colors.brown,
+    placeName: 'Desert',
+    imagePath: 'assets/images/pic(1).jpg',
+    placeDescription: 'Something about Deserts',
+    shadowColors: Color(0xff1FA188),
   ),
   Places(
-    name: "Heaven",
+    placeName: "Heaven",
     imagePath: "assets/images/pic(5).jpg",
     placeDescription: "Something about Heaven",
-    shadowColors: Colors.brown,
+    shadowColors: Color(0xff1FA188),
   ),
 ];
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
 
-  TextStyle main_heading = TextStyle(
+  TextStyle mainHeading = TextStyle(
     fontFamily: 'JosefinSans',
     color: Colors.black,
     //.withOpacity(0.8)
