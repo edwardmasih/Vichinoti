@@ -1,12 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class CarouselWidget extends StatelessWidget {
-  final Color shadowColor;
-  final String imagePath;
   final String widgetTitle;
+  final String imagePath;
+  final Color shadowColor;
 
-  CarouselWidget({this.widgetTitle, this.imagePath, this.shadowColor});
+  CarouselWidget(this.widgetTitle, this.imagePath, this.shadowColor);
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +17,14 @@ class CarouselWidget extends StatelessWidget {
       children: <Widget>[
         //CREATING SHADOW OF CAROUSEL SLIDER
         Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width * 0.75,
-          height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.85,
+          width: MediaQuery.of(context).size.width * 0.80,
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
                   color: shadowColor.withOpacity(0.8),
-                  blurRadius: 15,
-                  offset: Offset(0, 10)),
+                  blurRadius: 10,
+                  offset: Offset(0, 8)),
             ],
           ),
         ),
@@ -36,15 +32,13 @@ class CarouselWidget extends StatelessWidget {
         //CAROUSEL IMAGE
         Container(
           alignment: Alignment.center,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width * 0.75,
-          height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.85,
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          width: MediaQuery.of(context).size.width * 0.85,
+          margin: EdgeInsets.only(
+            left: 5,
+            right: 5,
+            top: 0,
+            bottom: 8,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             image: DecorationImage(
@@ -53,7 +47,7 @@ class CarouselWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding:EdgeInsets.only(),
+            padding: EdgeInsets.only(),
           ),
         ),
       ],
