@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:vichinoti/model/rating.dart';
+import 'package:vichinoti/model/text_syles.dart';
 
 class CarouselWidget extends StatelessWidget {
   final String widgetTitle;
@@ -36,8 +38,8 @@ class CarouselWidget extends StatelessWidget {
           margin: EdgeInsets.only(
             left: 5,
             right: 5,
-            top: 0,
-            bottom: 8,
+            top: 5,
+            bottom: 10,
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
@@ -47,7 +49,30 @@ class CarouselWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(),
+            padding: const EdgeInsets.only(
+              bottom: 50,
+              right: 100,
+              left: 100,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text(
+                  widgetTitle,
+                  style: AppTheme().heading,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Rating(
+                  initialRating: 0,
+                  size: 25,
+                  color: Colors.white,
+                  onRated: (int value) {
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ],
