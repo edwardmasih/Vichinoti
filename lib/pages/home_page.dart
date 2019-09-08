@@ -23,16 +23,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<SliderClass> carouselSliderList = List<SliderClass>();
 
-  int currentMainMenuIndex = 0;
-
+  void falseEverything(){
+    for(int i=0; i<places.length; i++){
+      mainMenuItem[i].isSelected = false;
+    }
+  }
   void onTappedMainMenuItem(int index) {
     setState(() {
-      currentMainMenuIndex = index;
+      switch (index) {
+        case 0:
+          falseEverything();
+          mainMenuItem[0].isSelected = true;
+          break;
+        case 1:
+          falseEverything();
+          mainMenuItem[1].isSelected = true;
+          break;
+        case 2:
+          falseEverything();
+          mainMenuItem[2].isSelected = true;
+          break;
+        case 3:
+          falseEverything();
+          mainMenuItem[3].isSelected = true;
+          break;
+        case 4:
+          falseEverything();
+          mainMenuItem[4].isSelected = true;
+          break;
+      }
     });
   }
 
   int currentNavTabIndex = 0;
-
   onTappedNavBar(int index) {
     setState(() {
       currentNavTabIndex = index;
@@ -163,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                       return Builder(builder: (context) {
                         return InkWell(
                           onTap: () {
-                            print("Tapped");
+                            print(" Carousel KTapped");
                           },
                           child: Hero(
                             tag: f.sliderImagePath,
