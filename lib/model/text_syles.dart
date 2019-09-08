@@ -24,6 +24,11 @@ class AppTheme {
     fontFamily: 'JosefinSAns',
     color: Colors.white,
     fontSize: 20,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
+  );
+
+  TextStyle navigationBar = TextStyle(
+    fontFamily: 'JosefinSAns',
+    fontSize: 18,
   );
 }
