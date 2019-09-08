@@ -23,9 +23,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<SliderClass> carouselSliderList = List<SliderClass>();
 
+  int currentMainMenuIndex = 0;
+
+  void onTappedMainMenuItem(int index) {
+    setState(() {
+      currentMainMenuIndex = index;
+    });
+  }
+
   int currentNavTabIndex = 0;
 
-  void onTappedNavBar(int index) {
+  onTappedNavBar(int index) {
     setState(() {
       currentNavTabIndex = index;
     });
@@ -103,25 +111,32 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.only(
                           right: 10,
                         ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: mainMenuItem[index].isSelected
-                                ? Color(0xff0245FC)
-                                : Color(0xffDDE7F9),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Text(
-                              mainMenuItem[index].title,
-                              style: TextStyle(
-                                letterSpacing: 1.1,
-                                fontSize: 18,
-                                fontFamily: 'JosefinSans',
-                                fontWeight: FontWeight.w500,
-                                color: mainMenuItem[index].isSelected
-                                    ? Colors.white
-                                    : Colors.black,
+                        child: InkWell(
+                          onTap: () {
+                            onTappedMainMenuItem(index);
+                          },
+                          borderRadius: BorderRadius.circular(15),
+                          splashColor: Colors.lightBlueAccent,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: mainMenuItem[index].isSelected
+                                  ? Color(0xff0245FC)
+                                  : Color(0xffDDE7F9).withOpacity(0.5),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Text(
+                                mainMenuItem[index].title,
+                                style: TextStyle(
+                                  letterSpacing: 1.1,
+                                  fontSize: 18,
+                                  fontFamily: 'JosefinSans',
+                                  fontWeight: FontWeight.w500,
+                                  color: mainMenuItem[index].isSelected
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                               ),
                             ),
                           ),
