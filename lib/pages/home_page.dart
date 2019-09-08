@@ -1,10 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vichinoti/model/text_syles.dart';
 import 'package:vichinoti/model/main_menu_items.dart';
 import 'package:vichinoti/model/places.dart';
 import 'package:vichinoti/widgets/carousel_widget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 
 class SliderClass {
   final String sliderTitle;
@@ -21,6 +22,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<SliderClass> carouselSliderList = List<SliderClass>();
+
+  int currentNavTabIndex = 0;
+
+  void onTappedNavBar(int index) {
+    setState(() {
+      currentNavTabIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -60,9 +69,12 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        "Vichinoti & Co.",
-                        style: AppTheme().mainHeading,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text(
+                          "Vichinoti & Co.",
+                          style: AppTheme().mainHeading,
+                        ),
                       ),
                       CircleAvatar(
                         radius: 25,
@@ -131,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                     enlargeCenterPage: true,
                     viewportFraction: 0.9,
                     initialPage: 4,
-                    height: MediaQuery.of(context).size.height * 0.73,
+                    height: MediaQuery.of(context).size.height * 0.72,
                     items: carouselSliderList.map((f) {
                       return Builder(builder: (context) {
                         return InkWell(
@@ -154,9 +166,83 @@ class _HomePageState extends State<HomePage> {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 10,
+                padding: EdgeInsets.only(
+                  bottom: 0,
+                ),
+                child: BubbleBottomBar(
+                  iconSize: 28,
+                  opacity: 0.2,
+                  currentIndex: currentNavTabIndex,
+                  onTap: onTappedNavBar,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                  elevation: 8,
+                  hasNotch: false,
+                  hasInk: true,
+                  //new, gives a cute ink effect
+                  inkColor: Colors.black12,
+                  //optional, uses theme color if not specified
+                  items: <BubbleBottomBarItem>[
+                    BubbleBottomBarItem(
+                      backgroundColor: Colors.red,
+                      icon: Icon(
+                        Icons.dashboard,
+                        color: Colors.black,
+                      ),
+                      activeIcon: Icon(
+                        Icons.dashboard,
+                        color: Colors.red,
+                      ),
+                      title: Text(
+                        "Home",
+                        style: AppTheme().navigationBar,
+                      ),
+                    ),
+                    BubbleBottomBarItem(
+                      backgroundColor: Colors.deepPurple,
+                      icon: Icon(
+                        Icons.access_time,
+                        color: Colors.black,
+                      ),
+                      activeIcon: Icon(
+                        Icons.access_time,
+                        color: Colors.deepPurple,
+                      ),
+                      title: Text(
+                        "Logs",
+                        style: AppTheme().navigationBar,
+                      ),
+                    ),
+                    BubbleBottomBarItem(
+                      backgroundColor: Colors.indigo,
+                      icon: Icon(
+                        Icons.account_circle,
+                        color: Colors.black,
+                      ),
+                      activeIcon: Icon(
+                        Icons.account_circle,
+                        color: Colors.indigo,
+                      ),
+                      title: Text(
+                        "Account",
+                        style: AppTheme().navigationBar,
+                      ),
+                    ),
+                    BubbleBottomBarItem(
+                      backgroundColor: Colors.green,
+                      icon: Icon(
+                        Icons.menu,
+                        color: Colors.black,
+                      ),
+                      activeIcon: Icon(
+                        Icons.menu,
+                        color: Colors.green,
+                      ),
+                      title: Text(
+                        "Menu",
+                        style: AppTheme().navigationBar,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
