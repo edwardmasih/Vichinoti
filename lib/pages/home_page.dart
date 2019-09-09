@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vichinoti/model/text_syles.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:vichinoti/model/main_menu_items.dart';
 import 'package:vichinoti/model/places.dart';
 import 'package:vichinoti/pages/detail_page.dart';
 import 'package:vichinoti/widgets/carousel_widget.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 
 class SliderClass {
   final String sliderTitle;
