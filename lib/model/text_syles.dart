@@ -15,7 +15,7 @@ class AppTheme {
     fontFamily: 'JosefinSans',
     color: Colors.white,
     //.withOpacity(0.8)
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: FontWeight.bold,
     //letterSpacing: 1.2,
   );
@@ -23,7 +23,7 @@ class AppTheme {
   TextStyle paragraph = TextStyle(
     fontFamily: 'JosefinSAns',
     color: Colors.white,
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: FontWeight.w400,
   );
 
