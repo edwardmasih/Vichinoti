@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:vichinoti/model/rating.dart';
+import 'package:vichinoti/widgets/rating.dart';
 import 'package:vichinoti/model/text_syles.dart';
 
 class CarouselWidget extends StatelessWidget {
