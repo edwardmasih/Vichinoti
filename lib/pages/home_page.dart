@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:vichinoti/model/text_syles.dart';
 import 'package:vichinoti/model/main_menu_items.dart';
 import 'package:vichinoti/model/places.dart';
+import 'package:vichinoti/pages/detail_page.dart';
 import 'package:vichinoti/widgets/carousel_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -23,11 +24,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<SliderClass> carouselSliderList = List<SliderClass>();
 
-  void falseEverything(){
-    for(int i=0; i<places.length; i++){
+  void falseEverything() {
+    for (int i = 0; i < places.length; i++) {
       mainMenuItem[i].isSelected = false;
     }
   }
+
   void onTappedMainMenuItem(int index) {
     setState(() {
       switch (index) {
@@ -56,6 +58,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   int currentNavTabIndex = 0;
+
   onTappedNavBar(int index) {
     setState(() {
       currentNavTabIndex = index;
@@ -66,13 +69,17 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     for (int i = 0; i < places.length; i++) {
-      carouselSliderList.add(SliderClass(places[i].placeName.toString(),
-          places[i].imagePath, places[i].shadowColors));
+      carouselSliderList.add(
+        SliderClass(
+            places[i].placeName, places[i].imagePath, places[i].shadowColors),
+      );
     }
 
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+      ],
+    );
   }
 
   @override
@@ -152,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 mainMenuItem[index].title,
                                 style: TextStyle(
-                                  letterSpacing: 1.1,
+                                  letterSpacing: 0,
                                   fontSize: 18,
                                   fontFamily: 'JosefinSans',
                                   fontWeight: FontWeight.w500,
@@ -186,7 +193,15 @@ class _HomePageState extends State<HomePage> {
                       return Builder(builder: (context) {
                         return InkWell(
                           onTap: () {
-                            print(" Carousel KTapped");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPage(
+                                  f.sliderImagePath,
+                                  f.sliderTitle,
+                                ),
+                              ),
+                            );
                           },
                           child: Hero(
                             tag: f.sliderImagePath,
